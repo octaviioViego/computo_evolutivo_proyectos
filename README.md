@@ -5,3 +5,5 @@
 - Nombre de la materia: Evolución computiva
 - Nombre del alumno: Fernando Octavio Arroyo Velasco
 - Nombre del profesor: Sabino Miranda Jimenez
+
+![Imagen referente a computación evolutiva.](imagenes/computo-evolutivo.jpg)
