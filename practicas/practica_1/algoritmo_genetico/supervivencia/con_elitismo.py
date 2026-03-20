@@ -16,7 +16,7 @@ class Con_elitismo(Supervivencia):
                                 poblacion: list[Contenedor],
                                 tamano_poblacion,
                                 generacion,
-                                max_generaciones):
+                                max_generaciones)-> tuple[list[Contenedor],Contenedor|None]:
 
 
             # Seleccionamos al mejor de la población anterios

@@ -8,5 +8,5 @@ class Supervivencia(ABC):
     def seleccion_supervivencia(poblacion: list[Contenedor],
                                 tamano_poblacion,
                                 generacion,
-                                max_generaciones):
+                                max_generaciones) -> tuple[list[Contenedor],Contenedor|None]:
         pass

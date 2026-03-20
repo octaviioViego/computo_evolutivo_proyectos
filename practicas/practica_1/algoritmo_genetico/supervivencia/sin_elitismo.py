@@ -13,7 +13,7 @@ class Sin_elitismo(Supervivencia):
                                 poblacion: list[Contenedor],
                                 tamano_poblacion,
                                 generacion,
-                                max_generaciones):
+                                max_generaciones)->tuple[list[Contenedor],Contenedor|None]:
                 
         
         # # TODO: Verificar si hay solución
