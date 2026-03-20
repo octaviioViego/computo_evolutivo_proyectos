@@ -1,4 +1,5 @@
-from penalizacion import penalizacion
+from penalizacion import Penalizacion, Fitness_Cero, Lineal, Cuadratica, Exponencial
+
 
 class Fitness():
     
