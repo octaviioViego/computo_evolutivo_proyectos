@@ -1,5 +1,5 @@
-from penalizacion import *
-from carga import * 
+from penalizacion import Penalizacion, Lineal, Fitness_Cero, Cuadratica, Exponencial
+from carga import Carga
 import numpy as np
 import numpy.typing as npt
 
