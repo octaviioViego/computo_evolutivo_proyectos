@@ -51,8 +51,5 @@ class Sin_elitismo(Supervivencia):
             carga_hijo_2:Contenedor = Contenedor(carga=hijo2) 
             nueva_poblacion.append(carga_hijo_1)
             nueva_poblacion.append(carga_hijo_2)
-
-            # Sustituye a la población completa de padres por los hijos
-            #poblacion = np.array(nueva_poblacion, dtype=np.int8)
         
-        return nueva_poblacion
+        return nueva_poblacion , None

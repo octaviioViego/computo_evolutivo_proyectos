@@ -20,14 +20,7 @@ class Con_elitismo(Supervivencia):
 
 
             # Seleccionamos al mejor de la población anterios
-            mejor_carga_generacion:Contenedor = max(poblacion,key=lambda ind: ind[1].fitness)
-            
-                
-            if generacion > 2:
-                aux_posicion_menor, aux_menor = min(enumerate(poblacion),key=lambda ind:ind[1].fitness)
-
-                poblacion[aux_posicion_menor] = mejor_carga_generacion 
-
+            mejor_carga_generacion:Contenedor = max(poblacion,key=lambda ind: ind.fitness)
 
             # # TODO: Verificar si hay solución
             # # Si hay solución termina el algoritmo, y retornar la solución
@@ -64,4 +57,6 @@ class Con_elitismo(Supervivencia):
                 nueva_poblacion.append(carga_hijo_1)
                 nueva_poblacion.append(carga_hijo_2)
             
-            return poblacion
+            # Buscamos al peor de la generacion y lo remplazamos por el mejor de la generacion anterior
+             
+            return nueva_poblacion, mejor_carga_generacion
