@@ -1,19 +1,20 @@
 import numpy as np
 import numpy.typing as npt
 import random
+from contenedor import Contenedor
 
 class Torneo():
-    def seleccionar_padres(self,poblacion: npt.NDArray[np.int8])-> tuple[npt.NDArray[np.int8], npt.NDArray[np.int8]]:
+    def seleccionar_padres(self,poblacion:list[Contenedor])-> tuple[npt.NDArray[np.int8], npt.NDArray[np.int8]]:
         
         seleccionados = random.sample(list(poblacion),5)
-        candidatos_array_ordenados:npt.NDArray = sorted(seleccionados, key=lambda x:x[1]) 
+        candidatos_array_ordenados:npt.NDArray = sorted(seleccionados, key=lambda ind:ind.fitness) 
         # print("Candidatos")
         # print(candidatos_array_ordenados)
         torneo: npt.NDArray = candidatos_array_ordenados[-2:] 
         # print("Seleccionados")
         # print(torneo)
         # Ordenar a los individuos seleccionados de acuerdo a la aptitud y seleccionar a los 2 mejores
-        carga1: tuple[np.array,int] = torneo[0] 
+        carga1: tuple[np.array,int] = torneo[0]
         carga2: tuple[np.array,int] = torneo[1]
         
 

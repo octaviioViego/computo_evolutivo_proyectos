@@ -1,7 +1,5 @@
 from grafica import Grafica
 import matplotlib.pyplot as plt
-import numpy as np
-import numpy.typing as npt
 
 class Grafica_lineas(Grafica):
 
@@ -10,6 +8,7 @@ class Grafica_lineas(Grafica):
         tamano = len(datos)
         x = list(range(tamano)) 
 
+        plt.figure() # Controla la figura y no deja que se ensucie.
         plt.plot(
             x,
             datos,

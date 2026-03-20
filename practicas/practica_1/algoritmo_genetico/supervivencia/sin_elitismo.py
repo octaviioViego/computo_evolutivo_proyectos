@@ -1,8 +1,8 @@
 from supervivencia import Supervivencia
-from fitness import Fitness
 from cruze import Cruce_cargas, Cruce_un_punto
 from torneo import Torneo
 from mutacion import Mutacion, Seleccion_aleatoria
+from contenedor import Contenedor
 import numpy as np
 import numpy.typing as npt
 
@@ -10,22 +10,11 @@ import numpy.typing as npt
 class Sin_elitismo(Supervivencia):
 
     def seleccion_supervivencia(self,
-                                poblacion: npt.NDArray[np.int8],
+                                poblacion: list[Contenedor],
                                 tamano_poblacion,
                                 generacion,
                                 max_generaciones):
                 
-        # TODO: Calcular aptitudes de toda la población para verificar si ya hay una solución
-        aptitudes: list[np.int_] = []
-        fitness: Fitness 
-        
-        for individuo in poblacion:
-            fitness = Fitness(individuo)
-            aptitudes.append(fitness.calcular_fitness())
-
-        valor_maximo: int = (np.max(aptitudes))
-        valor_minimo: int = (np.min(aptitudes))
-        valor_promedio: float = (np.mean(aptitudes))
         
         # # TODO: Verificar si hay solución
         # # Si hay solución termina el algoritmo, y retornar la solución
@@ -37,10 +26,8 @@ class Sin_elitismo(Supervivencia):
         #         return poblacion[indice]
             
         # Nueva generación
+        nueva_poblacion: list[Contenedor] = []
         
-        nueva_poblacion: list[npt.NDArray[np.int8]] = []
-        poblacion_fitness: list[tuple[list[int], float]] = []
-
         padre1: npt.NDArray[np.int8]
         padre2: npt.NDArray[np.int8]
         hijo1: npt.NDArray[np.int8]
@@ -50,11 +37,8 @@ class Sin_elitismo(Supervivencia):
         cruzar_cargas: Cruce_cargas = Cruce_un_punto()
         mutacion_cargas: Mutacion = Seleccion_aleatoria()
             
-        for posicion in range(0,len(poblacion)):
-            poblacion_fitness.append((poblacion[posicion],aptitudes[posicion]))
-
         for _ in range(tamano_poblacion // 2):
-            padre1, padre2 = seleccion_cargas.seleccionar_padres(poblacion=poblacion_fitness)
+            padre1, padre2 = seleccion_cargas.seleccionar_padres(poblacion=poblacion)
             hijo1, hijo2 = cruzar_cargas.cruce(padre1, padre2)
 
             if not generacion >= max_generaciones:
@@ -63,10 +47,12 @@ class Sin_elitismo(Supervivencia):
                 hijo2 = mutacion_cargas.generar_mutacion(hijo2)
 
             # Construye a la nueva población con los hijos
-            nueva_poblacion.append(hijo1)
-            nueva_poblacion.append(hijo2)
+            carga_hijo_1:Contenedor = Contenedor(carga=hijo1)
+            carga_hijo_2:Contenedor = Contenedor(carga=hijo2) 
+            nueva_poblacion.append(carga_hijo_1)
+            nueva_poblacion.append(carga_hijo_2)
 
             # Sustituye a la población completa de padres por los hijos
-            poblacion = np.array(nueva_poblacion, dtype=np.int8)
+            #poblacion = np.array(nueva_poblacion, dtype=np.int8)
         
-        return poblacion, valor_maximo, valor_minimo, valor_promedio
+        return nueva_poblacion

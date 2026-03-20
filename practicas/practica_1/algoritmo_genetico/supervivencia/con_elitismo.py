@@ -2,8 +2,9 @@ import numpy as np
 import numpy.typing as npt
 
 from supervivencia import Supervivencia
-from fitness import *
-from cruze import *
+from contenedor import Contenedor
+from fitness import Fitness
+from cruze import*
 from torneo import *
 from mutacion import *
 from carga import *
@@ -12,32 +13,19 @@ from carga import *
 class Con_elitismo(Supervivencia):
 
     def seleccion_supervivencia(self,
-                                poblacion: npt.NDArray[np.int8],
+                                poblacion: list[Contenedor],
                                 tamano_poblacion,
                                 generacion,
                                 max_generaciones):
 
-        for generacion in range(max_generaciones):
-            # TODO: Calcular aptitudes de toda la población para verificar si ya hay una solución
-            aptitudes = []
-            fitness: Fitness 
-            for individuo in poblacion:
-                fitness = Fitness(individuo)
-                aptitudes.append(fitness.calcular_fitness())
 
-
-
-            valor_maximo:int = (np.max(aptitudes))
-            valor_minimo:int = (np.min(aptitudes))
-            valor_promedio: float = (np.mean(aptitudes))
+            # Seleccionamos al mejor de la población anterios
+            mejor_carga_generacion:Contenedor = max(poblacion,key=lambda ind: ind[1].fitness)
             
                 
-            # Seleccionamos al mejor de la población anterios
-            aux_posicion_mayor, aux_mayor = max(enumerate(aptitudes),key=lambda x: x[1])
-            mejor_carga_generacion = poblacion[aux_posicion_mayor]
-                
             if generacion > 2:
-                aux_posicion_menor, aux_menor = min(enumerate(aptitudes),key=lambda x: x[1])
+                aux_posicion_menor, aux_menor = min(enumerate(poblacion),key=lambda ind:ind[1].fitness)
+
                 poblacion[aux_posicion_menor] = mejor_carga_generacion 
 
 
@@ -51,8 +39,7 @@ class Con_elitismo(Supervivencia):
             #         return poblacion[indice]
                 
             # Nueva generación
-            nueva_poblacion: list[npt.NDArray[np.int8]] = []
-            poblacion_fitness: list[tuple[list[int], float]] = []
+            nueva_poblacion: list[Contenedor] = []
 
             padre1: npt.NDArray[np.int8]
             padre2: npt.NDArray[np.int8]
@@ -62,11 +49,8 @@ class Con_elitismo(Supervivencia):
             cruzar_cargas: Cruce_cargas = Cruce_un_punto()
             mutacion_cargas: Mutacion = Seleccion_aleatoria()
                 
-            for posicion in range(0,len(poblacion)):
-                poblacion_fitness.append((poblacion[posicion],aptitudes[posicion]))
-
             for _ in range(tamano_poblacion // 2):
-                padre1, padre2 = seleccion_cargas.seleccionar_padres(poblacion=poblacion_fitness)
+                padre1, padre2 = seleccion_cargas.seleccionar_padres(poblacion=poblacion)
                 hijo1, hijo2 = cruzar_cargas.cruce(padre1, padre2)
 
                 if not generacion >= max_generaciones:
@@ -75,10 +59,9 @@ class Con_elitismo(Supervivencia):
                     hijo2 = mutacion_cargas.generar_mutacion(hijo2)
 
                 # Construye a la nueva población con los hijos
-                nueva_poblacion.append(hijo1)
-                nueva_poblacion.append(hijo2)
-
-                # Sustituye a la población completa de padres por los hijos
-                poblacion = np.array(nueva_poblacion, dtype=np.int8)
+                carga_hijo_1:Contenedor = Contenedor(carga=hijo1)
+                carga_hijo_2:Contenedor = Contenedor(carga=hijo2) 
+                nueva_poblacion.append(carga_hijo_1)
+                nueva_poblacion.append(carga_hijo_2)
             
-            return poblacion, valor_maximo, valor_minimo, valor_promedio
+            return poblacion
