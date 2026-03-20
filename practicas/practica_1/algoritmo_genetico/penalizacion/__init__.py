@@ -1,0 +1,3 @@
+from .penalizacion import Penalizacion
+
+
