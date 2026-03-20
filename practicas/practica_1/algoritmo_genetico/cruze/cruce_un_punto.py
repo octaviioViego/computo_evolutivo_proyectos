@@ -1,4 +1,4 @@
-from cruce_cargas import Cruce_cargas
+from .cruce_cargas import Cruce_cargas
 import numpy as np
 import numpy.typing as npt
 

@@ -6,15 +6,15 @@ class Carga():
     """
         - Generamos carga de manera aleatoria de 100 cargas diferentes.
     """
-    def generar_carga():
+    def generar_carga(self):
 
-        poblacion: npt.NDArray[np.int8] = np.random.randint(0,2,(100,30))
-        return poblacion
+        carga: npt.NDArray[np.int8] = np.random.randint(0,2,(100,30))
+        return carga
 
     """
         - Obtener información de las direfentes objetos de las cargas.
     """
-    def informacion_carga(posicion:int)->tuple[str, int, int]:
+    def informacion_carga(self,posicion:int)->tuple[str, int, int]:
 
         objetos:list[tuple[str, int, int]] = [
                     ('Botella de agua', 30, 6),

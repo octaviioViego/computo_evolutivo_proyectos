@@ -1,10 +1,8 @@
 from abc import ABC, abstractmethod
 import numpy as np
 import numpy.typing as npt
-
+from carga import Carga
 class Penalizacion(ABC):
-
-
 
     def __init__(self, peso_maximo:int=50):
         self.peso_maximo = peso_maximo
@@ -15,7 +13,8 @@ class Penalizacion(ABC):
 
         for posicion, objeto in enumerate(carga):
             if objeto == 1:
-                nombre,valor,peso = datos_carga(posicion=posicion)
+                carga = Carga()
+                nombre,valor,peso = carga.informacion_carga(posicion=posicion)
                 self.peso_total +=  peso
       #  print(f"Peso total {self.peso_total}")
 

@@ -1,10 +1,13 @@
+import numpy as np
+import numpy.typing as npt
+
 from supervivencia import Supervivencia
 from fitness import *
 from cruze import *
 from torneo import *
 from mutacion import *
-import numpy as np
-import numpy.typing as npt
+from carga import *
+
 
 class Con_elitismo(Supervivencia):
 
@@ -18,9 +21,11 @@ class Con_elitismo(Supervivencia):
             tamano_poblacion: int = 100
             max_generaciones: int = 100
 
+            
 
             # TODO: Generar población inicial
-            poblacion = generar_carga()
+            carga = Carga()
+            poblacion = carga.generar_carga()
 
             for generacion in range(max_generaciones):
                 # TODO: Calcular aptitudes de toda la población para verificar si ya hay una solución

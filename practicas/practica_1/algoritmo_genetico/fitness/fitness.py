@@ -1,5 +1,7 @@
-from penalizacion import Penalizacion, Fitness_Cero, Lineal, Cuadratica, Exponencial
-
+from penalizacion import *
+from carga import * 
+import numpy as np
+import numpy.typing as npt
 
 class Fitness():
     
@@ -16,9 +18,10 @@ class Fitness():
     
     def _calcular_valor_total(self)-> None:
          self.valor_total = 0
+         carga = Carga()
          for posicion, objeto in enumerate(self.carga):
             if objeto == 1:
-                nombre, valor , peso = datos_carga(posicion=posicion)
+                nombre, valor , peso = carga.informacion_carga(posicion=posicion)
                 self.valor_total += valor
     
     def calcular_fitness(self,penalizacion_selecionada:str = "fitnes_cero")-> int:
