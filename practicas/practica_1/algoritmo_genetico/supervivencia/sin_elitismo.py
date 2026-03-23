@@ -11,9 +11,11 @@ class Sin_elitismo(Supervivencia):
 
     def seleccion_supervivencia(self,
                                 poblacion: list[Contenedor],
-                                tamano_poblacion,
-                                generacion,
-                                max_generaciones)->tuple[list[Contenedor],Contenedor|None]:
+                                tamano_poblacion:int,
+                                generacion:int,
+                                max_generaciones:int,
+                                recombinacion:Cruce_cargas,
+                                mutacion:Mutacion)->tuple[list[Contenedor],Contenedor|None]:
                 
         
         # # TODO: Verificar si hay solución
@@ -34,8 +36,8 @@ class Sin_elitismo(Supervivencia):
         hijo2: npt.NDArray[np.int8]
 
         seleccion_cargas: Torneo = Torneo()
-        cruzar_cargas: Cruce_cargas = Cruce_un_punto()
-        mutacion_cargas: Mutacion = Seleccion_aleatoria()
+        cruzar_cargas: Cruce_cargas = recombinacion()
+        mutacion_cargas: Mutacion = mutacion()
             
         for _ in range(tamano_poblacion // 2):
             padre1, padre2 = seleccion_cargas.seleccionar_padres(poblacion=poblacion)
