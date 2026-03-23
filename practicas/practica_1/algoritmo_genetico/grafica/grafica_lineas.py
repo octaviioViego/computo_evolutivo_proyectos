@@ -26,7 +26,7 @@ class Grafica_lineas(Grafica):
         plt.grid(True)
 
         if not guardar_grafica == 'No guardar':
-            guardar: str = "/home/oarroyo/computo_evolutivo_proyectos/datos_experimentos/imagenes" + guardar_grafica
+            guardar: str = "/home/oarroyo/computo_evolutivo_proyectos/datos_experimentos/imagenes/" + guardar_grafica
             plt.savefig(guardar, dpi=300)
             plt.close()  
             return
