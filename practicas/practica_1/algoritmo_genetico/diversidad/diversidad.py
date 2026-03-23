@@ -5,7 +5,6 @@
 from .promedio import Promedio
 from .varianza import Varianza
 from contenedor import Contenedor
-import numpy as np
 
 class Diversidad():
     
@@ -17,5 +16,5 @@ class Diversidad():
         promedios: float = promedio_gen.calcular_promedio(poblacion=poblacion)
         varianzas: float = varianza_gen.calcular_varianza(poblacion=poblacion,lista_promedio=promedios)
 
-        return np.sum(varianzas)/tamano_genes
+        return sum(varianzas)/tamano_genes
         

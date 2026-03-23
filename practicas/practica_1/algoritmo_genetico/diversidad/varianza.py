@@ -1,14 +1,12 @@
 """
     - Se calcula la varianza en cada gen usando el promedio.
 """
-from .promedio import Promedio
 from contenedor import Contenedor
-import numpy as np
 
 class Varianza():
 
     def calcular_varianza(self,lista_promedio: list[float], poblacion:list[Contenedor])->list[float]:
-        suma_promedio_gen: int 
+        suma_promedio_gen: float
         tamano_poblacion: int = len(poblacion)
         tamano_genes: int = len(poblacion[0].carga)
         lista_varianza: list[float] = []
@@ -17,7 +15,7 @@ class Varianza():
             suma_promedio_gen = 0
 
             for contenedor in poblacion:
-                suma_promedio_gen += np.power(contenedor.carga[posicion]-lista_promedio[posicion],2)   
+                suma_promedio_gen += (contenedor.carga[posicion]-lista_promedio[posicion]) ** 2   
             
             lista_varianza.append(suma_promedio_gen/tamano_poblacion)
             
