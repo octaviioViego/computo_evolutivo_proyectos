@@ -1,1 +1,5 @@
-from diversidad import Diversidad
+from .diversidad import Diversidad
+
+__all__ = [
+    "Diversidad"
+]

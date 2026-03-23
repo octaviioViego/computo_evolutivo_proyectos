@@ -8,7 +8,7 @@ from contenedor import Contenedor
 
 class Promedio():
     
-    def calcular_promedio(poblacion:list[Contenedor]) -> list[float]:
+    def calcular_promedio(self,poblacion:list[Contenedor]) -> list[float]:
         
         suma_genes: int
         tamano_poblacion:int = len(poblacion)
@@ -18,8 +18,8 @@ class Promedio():
         for posicion in range(tamano_genes):
             suma_genes = 0
 
-            for contenedor, _ in poblacion:
-                suma_genes += contenedor[posicion]
+            for contenedor in poblacion:
+                suma_genes += contenedor.carga[posicion]
 
             lista_promedio.append(suma_genes/tamano_poblacion)
 
