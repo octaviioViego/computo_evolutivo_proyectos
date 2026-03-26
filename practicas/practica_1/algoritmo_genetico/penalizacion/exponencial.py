@@ -4,7 +4,7 @@ import math
 class Exponencial(Penalizacion):
     
     def calcular_aptitud(self) -> int:
-        alfa:int = 1
+        alfa:int = 0.01
         valor_penalizacion: int = 0
         exceso: int = 0
 
