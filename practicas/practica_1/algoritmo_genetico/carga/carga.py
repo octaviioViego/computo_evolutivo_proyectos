@@ -1,6 +1,5 @@
 import numpy as np
 import numpy.typing as npt
-from contenedor import Contenedor
 
 class Carga():
 
@@ -50,21 +49,3 @@ class Carga():
                     ('Silbato de emergencia', 10, 2)
                 ]
         return objetos[posicion]
-
-    def calcular_valor_peso(self, contenedor:Contenedor) -> tuple[int,int,list[str]]:
-        carga:list[int] = contenedor.carga
-        datos_carga:tuple[str, int, int]
-        valor_carga:int = 0
-        peso_carga:int = 0
-        lista_productos: list[str] = []
-
-        for posicion, producto in enumerate(carga):
-            
-            if producto == 0:
-                continue
-            datos_carga = self.informacion_carga(posicion=posicion)
-            lista_productos.append(datos_carga[0])
-            valor_carga += datos_carga[1]
-            peso_carga += datos_carga[2]
-
-        return valor_carga, peso_carga, lista_productos 
