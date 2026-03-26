@@ -6,7 +6,7 @@ class InformacionCargas(Guardar):
                  nombre_archivo="datos_cargas"):
             self.lista_informacion_cargas = lista_informacion_cargas
             self.nombre_archivo = nombre_archivo
-            self.nombre_archivo = nombre_archivo
+            
 
     def guardar_CSV(self)->None:
         filas = []

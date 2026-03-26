@@ -10,7 +10,7 @@ class Configuracion(Guardar):
                  configuraciones_posibles:list[list[Cruce_cargas,Mutacion,str,Supervivencia]],
                  nombre_archivo="datos_configuraciones"):
                 self.configuraciones_posibles = configuraciones_posibles
-                self,nombre_archivo = nombre_archivo
+                self.nombre_archivo = nombre_archivo
 
     def guardar_CSV(self)-> None:
         pf:pd.DataFrame = pd.DataFrame(self.configuraciones_posibles,columns=['Cruce','Mutacion',
