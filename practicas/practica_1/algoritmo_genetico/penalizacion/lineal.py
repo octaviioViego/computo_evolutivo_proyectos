@@ -3,7 +3,6 @@ from penalizacion import Penalizacion
 class Lineal(Penalizacion):
 
     def calcular_aptitud(self)-> int:
-        
         alfa:int = 1
         valor_penalizacion: int = 0
         exceso: int = 0

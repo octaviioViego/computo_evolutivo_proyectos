@@ -20,4 +20,4 @@ class Contenedor():
             valor_carga += datos_carga[1]
             peso_carga += datos_carga[2]
 
-        return valor_carga, peso_carga, lista_productos 
+        return valor_carga, peso_carga, lista_productos, self.carga 
