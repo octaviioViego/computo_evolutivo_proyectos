@@ -5,7 +5,7 @@ from supervivencia import Supervivencia
 
 class AnalisisEstadistico(Guardar):
     def __init__(self,
-                lista_configuraciones_totales: list[list[tuple[int,float,float,float,Cruce_cargas,Mutacion,str,Supervivencia]]],
+                lista_configuraciones_totales: list[list[tuple[int,int,int,float,float,float,Cruce_cargas,Mutacion,str,Supervivencia]]],
                 nombre_archivo="analisis_estadistico"):
             self.lista_configuraciones_totales = lista_configuraciones_totales
             self.nombre_archivo = nombre_archivo
@@ -15,13 +15,16 @@ class AnalisisEstadistico(Guardar):
     
         for configuracion in self.lista_configuraciones_totales:
 
-            fitness_mej, valor_prom, valor_var, valor_des_std, conf_cruce, conf_mutacion, conf_penalizacion, conf_supervivencia = configuracion
+            individuos_dif, fitness_dif, fitness_mej, valor_prom, valor_var, valor_des_std, conf_cruce, conf_mutacion, conf_penalizacion, conf_supervivencia = configuracion
                 
-            filas.append((fitness_mej, valor_prom, valor_var, 
+            filas.append((individuos_dif, fitness_dif,
+                        fitness_mej, valor_prom, valor_var, 
                         valor_des_std, conf_cruce, conf_mutacion, 
                         conf_penalizacion, conf_supervivencia))  # convertir lista a string
 
         df = pd.DataFrame(filas, columns=[
+            'Individuos direfentes',
+            'Fitness diferentes',
             'Mayor fitness ',
             'Promedio',
             'Varianza',
