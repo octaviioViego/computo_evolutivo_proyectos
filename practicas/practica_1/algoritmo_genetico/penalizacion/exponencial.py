@@ -3,16 +3,13 @@ import math
 
 class Exponencial(Penalizacion):
     
-    def calcular_aptitud(self) -> int:
-        alfa:int = 0.01
-        valor_penalizacion: int = 0
-        exceso: int = 0
+    def calcular_aptitud(self) -> float:
+        alfa: float = 0.01
 
-        if self.peso_total <= self.peso_total:
+        if self.peso_total <= self.peso_maximo:
             return 0
 
-        exceso = self.peso_total-self.peso_maximo
+        exceso = self.peso_total - self.peso_maximo
+        valor_penalizacion = alfa * math.exp(exceso)
 
-        valor_penalizacion = (alfa * (self.math.exp(exceso)))
-        
-        return  valor_penalizacion
+        return valor_penalizacion

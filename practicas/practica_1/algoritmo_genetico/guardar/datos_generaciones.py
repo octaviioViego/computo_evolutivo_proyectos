@@ -3,16 +3,16 @@ from .guardar import Guardar,pd
 
 class DatosGeneraciones(Guardar):
     def __init__(self,
-                 valor_maximo_generacion: list[int],
-                 valor_minimo_generacion: list[int],
+                 valor_fitness_maximo_generacion: list[int],
+                 valor_fitness_minimo_generacion: list[int],
                  valor_promedio_generacion: list[float],
                  valor_desviacion_std_generacion: list[float],
                  valor_varianza_generacion: list[float],
                  valor_diversidad_generacion: list[float],
                  nombre_archivo="datos_generaciones"):
             
-            self.valor_maximo_generacion = valor_maximo_generacion
-            self.valor_minimo_generacion = valor_minimo_generacion
+            self.valor_maximo_generacion = valor_fitness_maximo_generacion
+            self.valor_minimo_generacion = valor_fitness_minimo_generacion
             self.valor_promedio_generacion = valor_promedio_generacion
             self.valor_desviacion_std_generacion = valor_desviacion_std_generacion
             self.valor_varianza_generacion = valor_varianza_generacion
