@@ -1,0 +1,13 @@
+from .Mutacion import Mutacion
+
+"""
+    - Mutación por intercambio.
+"""
+
+class MutacionIntercambio(Mutacion):
+    
+    def __init__(self,tasa_mutacion:float):
+        self.tasa_mutacion = tasa_mutacion
+    
+    def mutacion(self, individuo:list[int])-> list[int]:
+        pass
