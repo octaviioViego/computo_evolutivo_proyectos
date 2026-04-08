@@ -11,7 +11,7 @@ class MutacionIntercambio(Mutacion):
         self.tasa_mutacion = tasa_mutacion
     
     def mutar(self, individuo:list[int])-> list[int]:
-        if random.random() > self.tasa_mutacion:
+        if random.random() < self.tasa_mutacion:
             tamano_individuo = len(individuo) - 1
             
             gen_uno, gen_dos = sorted(random.sample(range(1, tamano_individuo), 2))

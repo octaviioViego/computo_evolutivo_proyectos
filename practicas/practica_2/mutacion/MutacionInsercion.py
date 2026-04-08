@@ -11,7 +11,7 @@ class MutacionInsercion(Mutacion):
     
 
     def mutar(self, individuo:list[int])-> list[int]:
-        if random.random() > self.tasa_mutacion:
+        if random.random() < self.tasa_mutacion:
             # Nos aseguramos que el tamaño maximo -1 sea valido en nuestro for.
             tamano_individuo = len(individuo) - 1
 
