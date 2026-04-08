@@ -1,5 +1,5 @@
 from .Mutacion import Mutacion
-
+import random
 """
     - Mutación desordenada.
 """
@@ -9,5 +9,18 @@ class MutacionDesordenada(Mutacion):
         self.tasa_mutacion = tasa_mutacion
     
 
-    def mutacion(self, individuo:list[int])-> list[int]:
-        pass
+    def mutar(self, individuo:list[int])-> list[int]:
+        if random.random() > self.tasa_mutacion:
+            tamano_individuo = len(individuo) - 1
+            
+            inicio, fin = sorted(random.sample(range(1, tamano_individuo), 2))
+            
+            individuo_aux = individuo[inicio:fin] 
+            salir = True
+            
+            while(salir):
+                sub_conjunto = random.sample(individuo_aux, (len(individuo_aux)))
+                if sub_conjunto != individuo_aux:
+                    salir=False
+
+            return individuo
