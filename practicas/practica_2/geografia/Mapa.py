@@ -1,5 +1,5 @@
 from geopy.distance import geodesic
-from Ciudad import Ciudad
+from practicas.practica_2.geografia.Ciudad import Ciudad
 
 class Mapa:
     """
